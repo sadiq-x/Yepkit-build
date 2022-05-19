@@ -1,0 +1,8 @@
++ MVP
+- ASAP
+
+- Idempotency for events consumed. Can be done by caching the last processed events timestamp and uid.
+
++ Clean-up development logs.
+
+

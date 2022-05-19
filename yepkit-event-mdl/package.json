@@ -1,0 +1,22 @@
+{
+  "type": "module",
+  "name": "yepkit-event-mdl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "ssh://devlab/srv/git_repo/web/npm-packages/yepkit-event-mdl"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^8.5.0"
+  }
+}
