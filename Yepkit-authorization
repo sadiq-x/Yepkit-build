@@ -1,0 +1,75 @@
+yepkit-authorization
+
+The module subject is to handle user authorization through JWT.
+
+The module functionalities:
+
+    Get keys, with name "user-srv-key", from key-manager web service.
+    Manage keys life cycle.
+    Check authorization based on the JWT in the request Authorization header.
+
+Installation
+
+pnpm install yepkit-authorization
+
+Dependencies
+
+This module makes requests to key-manager service, which must be running locally. By default it will assume that the key-manager is running in Docker network ykdocker and listening to port 8080. To configure it to use another host or port for communicating with key-manager the following environment variables must be set:
+
+    KEY_MANAGER_HOST
+    KEY_MANAGER_PORT
+
+Usage
+
+import Auth from 'yepkit-authorization';
+
+const keyName = 'user-srv-key';
+const issuer = 'user-srv';
+const audience = 'yepkit.com';
+
+const auth = Auth(keyName, issuer, audience);
+
+// Initialize authorization.
+auth.init();  // This will get the last keys from key-manager service.
+              // In case of error it will keep retrying every 60 seconds.
+
+if (auth.checkReady()) {
+  // go on... for example: start server
+}
+
+// Check if has admin permissions
+// It will use req.headers.authorization to get the JWT token
+if (auth.checkAuthorized(req, 'admin')) {
+  console.log('Authorized');
+} else {
+  console.log('Not Authorized');
+}
+
+
+// Create a JWT
+// For example it can be used in the sign-in code of user-srv
+const dataJWT = {
+  user: {
+    id: "12234",
+    firstName: "Paulo",
+    role: "admin"
+  }
+};
+const time2expire = 60 * 60 * 2;  // 2 hours
+const subject = "yepkit.com";
+const jwt = auth.issueJWT(dataJWT, time2expire, subject);
+
+
+// Decode a JWT in the request
+const decoded = auth.decodeJwt(req);
+console.log(decoded);
+
+
+// Update the current key pair
+const keyPair = {
+  privateKey: "",
+  publicKey: "",
+  timeStamp: 1111111
+}
+auth.updateKeyPair(keyPair);
+
