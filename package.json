@@ -1,0 +1,22 @@
+{
+  "name": "ys1",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Base project: Criar um serviço de analystic, recolha e intereção com os dados.  O serviço recolhe os dados, guarda-os em JSON em um database. O serviço pode apresentar os dados em dias/meses/ano em JSON.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "c8 --check-coverage true mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "expressjs": "^1.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.6.0"
+  },
+  "devDependencies": {
+    "c8": "^7.11.3",
+    "mocha": "^10.0.0"
+  }
+}
