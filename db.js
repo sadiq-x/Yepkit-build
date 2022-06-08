@@ -10,15 +10,11 @@ const dbName = 'Yepkit-build';
 let clientConnect;
 //DbConnect(), função utilizada para ligar a DataBase
 export async function DbConnect() {
-    console.log('Database will be connect...');
     client.connect().then(() => { clientConnect = client.db(dbName)})
 }
 
 /*getClient(), é uma função que retorna o client.db(dbName), 
 podemos considerar que é um middleware para as funções de cada end-point */
 export function getClient() {
-    if (clientConnect) {
-        console.log('Client-db is reading...')
-        return clientConnect
-    } else { console.log('Error clientClient'); }
+    if (clientConnect) {return clientConnect}
 }

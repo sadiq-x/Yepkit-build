@@ -9,8 +9,8 @@ app.use(express.json()); // for parsing application/json
 
 let state = false   //Variable that defines the state of the connection to the Database.
 //Database connect
-export async function main() {
-    await DbConnect().then(() => { return state = true })
+async function main() {
+    DbConnect().then(() => { return state = true })
     if (state) {
         console.log(`Databse connect, state: ${state}`)
         try { CheckDb() } catch (e) { console.log(e) }
@@ -18,7 +18,7 @@ export async function main() {
 }
 
 //Server connect
-export function CheckDb() {
+function CheckDb() {
     const DataNow = new Date(Date.now()).toUTCString();
     app.listen(PORT, () => { console.log(`Server up to ${PORT},`, DataNow) });
 }
@@ -26,11 +26,14 @@ export function CheckDb() {
 main()
 
 //End-points
-import analytic from '../analytics-user.js'
-app.get('/analytics', analytic, (req, res, next) => { })
+import { analytic } from '../analytics-user.js'
+app.get('/analytics', analytic, (req, res) => { })
 
 import { analyticsfindpost } from '../analytics-find-post.js'
-app.post('/metrics', analyticsfindpost, (req, res, next) => { })
+app.post('/metrics', analyticsfindpost, (req, res) => { })
 
 //Not used
-app.post('/tests', (req, res, next) => { })
+app.post('/tests', (req, res) => { })
+
+
+
