@@ -1,0 +1,642 @@
+# Dhl body request original
+let options = {
+    method: 'POST',
+    headers: {
+        'content-type': 'application/json',
+        'Message-Reference': 'SOME_STRING_VALUE',
+        'Message-Reference-Date': 'SOME_STRING_VALUE',
+        'Plugin-Name': 'SOME_STRING_VALUE',
+        'Plugin-Version': 'SOME_STRING_VALUE',
+        'Shipping-System-Platform-Name': 'SOME_STRING_VALUE',
+        'Shipping-System-Platform-Version': 'SOME_STRING_VALUE',
+        'Webstore-Platform-Name': 'SOME_STRING_VALUE',
+        'Webstore-Platform-Version': 'SOME_STRING_VALUE',
+        Authorization: 'Basic REPLACE_BASIC_AUTH'
+    },
+    body: {
+        "plannedShippingDateAndTime": "2019-08-04T14:00:31GMT+01:00",
+        "pickup": {
+          "isRequested": false,
+          "closeTime": "18:00",
+          "location": "reception",
+          "specialInstructions": [
+            {
+              "value": "please ring door bell",
+              "typeCode": "TBD"
+            }
+          ],
+          "pickupDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          },
+          "pickupRequestorDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          }
+        },
+        "productCode": "",
+        "localProductCode": "",
+        "getRateEstimates": false,
+        "accounts": [
+          {
+            "typeCode": "",
+            "number": ""
+          }
+        ],
+        "valueAddedServices": [
+          {
+            "serviceCode": "",
+            "value": 0,
+            "currency": "",
+            "method": "",
+            "dangerousGoods": [
+              {
+                "contentId": "",
+                "dryIceTotalNetWeight": 0,
+                "unCode": ""
+              }
+            ]
+          }
+        ],
+        "outputImageProperties": {
+          "printerDPI": 0,
+          "customerBarcodes": [
+            {
+              "content": "",
+              "textBelowBarcode": "",
+              "symbologyCode": ""
+            }
+          ],
+          "customerLogos": [
+            {
+              "fileFormat": "",
+              "content": ""
+            }
+          ],
+          "encodingFormat": "",
+          "imageOptions": [
+            {
+              "typeCode": "",
+              "templateName": "",
+              "isRequested": true,
+              "hideAccountNumber": false,
+              "numberOfCopies": 1,
+              "invoiceType": "",
+              "languageCode": "",
+              "languageCountryCode": "",
+              "encodingFormat": "",
+              "renderDHLLogo": false,
+              "fitLabelsToA4": false,
+              "labelFreeText": "",
+              "labelCustomerDataText": ""
+            }
+          ],
+          "splitTransportAndWaybillDocLabels": true,
+          "allDocumentsInOneImage": true,
+          "splitDocumentsByPages": true,
+          "splitInvoiceAndReceipt": true,
+          "receiptAndLabelsInOneImage": true
+        },
+        "customerReferences": [
+          {
+            "value": "",
+            "typeCode": ""
+          }
+        ],
+        "identifiers": [
+          {
+            "typeCode": "",
+            "value": "",
+            "dataIdentifier": ""
+          }
+        ],
+        "customerDetails": {
+          "shipperDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          },
+          "receiverDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          },
+          "buyerDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          },
+          "importerDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          },
+          "exporterDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          },
+          "sellerDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          },
+          "payerDetails": {
+            "postalAddress": {
+              "postalCode": "",
+              "cityName": "",
+              "countryCode": "",
+              "provinceCode": "",
+              "addressLine1": "",
+              "addressLine2": "",
+              "addressLine3": "",
+              "countyName": "",
+              "provinceName": "",
+              "countryName": ""
+            },
+            "contactInformation": {
+              "email": "",
+              "phone": "",
+              "mobilePhone": "",
+              "companyName": "",
+              "fullName": ""
+            },
+            "registrationNumbers": [
+              {
+                "typeCode": "",
+                "number": "",
+                "issuerCountryCode": ""
+              }
+            ],
+            "bankDetails": [
+              {
+                "name": "",
+                "settlementLocalCurrency": "",
+                "settlementForeignCurrency": ""
+              }
+            ],
+            "typeCode": ""
+          }
+        },
+        "content": {
+          "packages": [
+            {
+              "typeCode": "",
+              "weight": 0,
+              "dimensions": {
+                "length": 0,
+                "width": 0,
+                "height": 0
+              },
+              "customerReferences": [
+                {
+                  "value": "",
+                  "typeCode": ""
+                }
+              ],
+              "identifiers": [
+                {
+                  "typeCode": "",
+                  "value": "",
+                  "dataIdentifier": ""
+                }
+              ],
+              "description": "",
+              "labelBarcodes": [
+                {
+                  "position": "",
+                  "symbologyCode": "",
+                  "content": "",
+                  "textBelowBarcode": ""
+                }
+              ],
+              "labelText": [
+                {
+                  "position": "",
+                  "caption": "",
+                  "value": ""
+                }
+              ],
+              "labelDescription": ""
+            }
+          ],
+          "isCustomsDeclarable": true,
+          "declaredValue": 0,
+          "declaredValueCurrency": "",
+          "exportDeclaration": {
+            "lineItems": [
+              {
+                "number": 1,
+                "description": "",
+                "price": 0,
+                "quantity": {
+                  "value": 0,
+                  "unitOfMeasurement": ""
+                },
+                "commodityCodes": [
+                  {
+                    "typeCode": "",
+                    "value": ""
+                  }
+                ],
+                "exportReasonType": "",
+                "manufacturerCountry": "",
+                "exportControlClassificationNumber": "",
+                "weight": {
+                  "netValue": 0,
+                  "grossValue": 0
+                },
+                "isTaxesPaid": true,
+                "additionalInformation": [
+                  "string"
+                ],
+                "customerReferences": [
+                  {
+                    "typeCode": "",
+                    "value": ""
+                  }
+                ],
+                "customsDocuments": [
+                  {
+                    "typeCode": "",
+                    "value": ""
+                  }
+                ]
+              }
+            ],
+            "invoice": {
+              "number": "",
+              "date": "",
+              "signatureName": "",
+              "signatureTitle": "",
+              "signatureImage": "",
+              "instructions": [
+                "string"
+              ],
+              "customerDataTextEntries": [
+                "string"
+              ],
+              "totalNetWeight": 0,
+              "totalGrossWeight": 0,
+              "customerReferences": [
+                {
+                  "typeCode": "",
+                  "value": ""
+                }
+              ],
+              "termsOfPayment": ""
+            },
+            "remarks": [
+              {
+                "value": ""
+              }
+            ],
+            "additionalCharges": [
+              {
+                "value": 0,
+                "caption": "",
+                "typeCode": ""
+              }
+            ],
+            "destinationPortName": "",
+            "placeOfIncoterm": "",
+            "payerVATNumber": "",
+            "recipientReference": "",
+            "exporter": {
+              "id": "",
+              "code": ""
+            },
+            "packageMarks": "",
+            "declarationNotes": [
+              {
+                "value": ""
+              }
+            ],
+            "exportReference": "",
+            "exportReason": "",
+            "exportReasonType": "",
+            "licenses": [
+              {
+                "typeCode": "",
+                "value": ""
+              }
+            ],
+            "shipmentType": "",
+            "customsDocuments": [
+              {
+                "typeCode": "",
+                "value": ""
+              }
+            ]
+          },
+          "description": "",
+          "USFilingTypeValue": "",
+          "incoterm": "",
+          "unitOfMeasurement": ""
+        },
+        "documentImages": [
+          {
+            "typeCode": "",
+            "imageFormat": "",
+            "content": ""
+          }
+        ],
+        "onDemandDelivery": {
+          "deliveryOption": "",
+          "location": "",
+          "specialInstructions": "",
+          "gateCode": "",
+          "whereToLeave": "",
+          "neighbourName": "",
+          "neighbourHouseNumber": "",
+          "authorizerName": "",
+          "servicePointId": "",
+          "requestedDeliveryDate": ""
+        },
+        "requestOndemandDeliveryURL": false,
+        "shipmentNotification": [
+          {
+            "typeCode": "",
+            "receiverId": "",
+            "languageCode": "",
+            "languageCountryCode": "",
+            "bespokeMessage": ""
+          }
+        ],
+        "prepaidCharges": [
+          {
+            "typeCode": "",
+            "currency": "",
+            "value": 0,
+            "method": ""
+          }
+        ],
+        "getTransliteratedResponse": false,
+        "estimatedDeliveryDate": {
+          "isRequested": false,
+          "typeCode": ""
+        },
+        "getAdditionalInformation": [
+          {
+            "typeCode": "",
+            "isRequested": true
+          }
+        ],
+        "parentShipment": {
+          "productCode": "",
+          "packagesCount": 1
+        }
+      }
+};
+
+let url = 'https://api-mock.dhl.com/mydhlapi/shipments';

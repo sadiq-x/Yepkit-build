@@ -1,0 +1,1 @@
+import { getClient } from '/home/rafael/Desktop/Yepkit-sadiq/ys2/db.js';

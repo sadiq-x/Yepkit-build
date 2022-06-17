@@ -12,9 +12,24 @@ c8, mocha.
 -
 # Curl test:
 -
+
+# Mongo DB, URI example:
+mongodb+srv://<username>:<password>@<cluster>.tpn4u.mongodb.net/?retryWrites=true&w=majority
+
 # Variable environment:
-export MONGO_DB='mongodb+srv://<username>:<password>@<cluster>.tpn4u.mongodb.net/?retryWrites=true&w=majority'; 
-export PORT_SRV=5999;
+MONGO_DB,
+PORT_SRV;
+
+# Variable environment at file create-order.js:
+MESSAGE_REFERENCE,
+MESSAGE_REFERENCE_DATE,
+PLUGIN_NAME,
+PLUGIN_VERSION,
+SHIPPING_SYSTEM_PLATFORM_NAME,
+SHIPPING_SYSTEM_PLATFORM_VERSION,
+WEBSTORE_PLATFORM_NAME,
+WEBSTORE_PLATFORM_VERSION,
+AUTHORIZATION;
 
 # Containerfile
 Variable environment:
@@ -22,3 +37,6 @@ MONGO_DB, PORT_SRV;
 (The environment variables by default are set to 0.)
 
 # $ npm start
+
+# Curl developer test:
+curl -X POST http://localhost:5999/createorder -H 'Content-Type: application/json' -d '{"user":"Rafael","company":"Yepkit"}'
