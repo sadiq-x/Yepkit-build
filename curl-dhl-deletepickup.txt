@@ -1,0 +1,4 @@
+curl -X DELETE http://localhost:5999/deletepickup -H 'Content-Type: application/json' -d '{"dispatchConfirmationNumber":"","requestorName":"","reason":""}'
+
+Not used: 
+curl -X DELETE http://localhost:5999/deletepickup -H 'Content-Type: application/json' -d '{"dispatchConfirmationNumber":""}'

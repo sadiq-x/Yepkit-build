@@ -1,0 +1,4 @@
+curl -X POST  http://localhost:5999/readorder -H 'Content-Type: application/json' -d '{"shipmentTrackingNumber":"1234567890"}'
+
+Not used:
+curl -X POST  http://localhost:5999/readorder -H 'Content-Type: application/json' -d '{"shipmentTrackingNumber":"","trackingView":"","levelOfDetail":""}'

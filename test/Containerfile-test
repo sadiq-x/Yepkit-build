@@ -1,0 +1,11 @@
+FROM docker.io/node:slim
+
+WORKDIR /dhlservices
+COPY . .
+RUN npm install
+
+EXPOSE 5999
+ENV PORT_SRV 0
+
+CMD [ "node", "src/index.js" ]
+

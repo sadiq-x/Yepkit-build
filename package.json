@@ -1,26 +1,22 @@
 {
-  "name": "ys2",
+  "name": "ys2-dhlapi",
   "type": "module",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "DHL order/delivery and pickup service.",
+  "main": "src/index.js",
   "scripts": {
     "nodemon": "nodemon src/index.js",
-    "start": "node src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.1",
+    "c8": "^7.11.3",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
-    "mongodb": "^4.7.0",
-    "node-fetch": "^3.2.6"
-  },
-  "devDependencies": {
-    "c8": "^7.11.3",
     "mocha": "^10.0.0",
+    "mongodb": "^4.7.0",
+    "node-fetch": "^3.2.6",
     "nodemon": "^2.0.16"
   }
 }

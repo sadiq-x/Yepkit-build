@@ -1,47 +1,40 @@
 import express from 'express';
 const app = express();
-const PORT = process.env.PORT_SRV || 9995;
 
-app.use(express.json())
+app.use(express.json());
+//app.use(express.urlencoded());
 
-let state;
+//Server Port (environment variable).
+const PORT = process.env.PORT_SRV || 9555
 
-import { dbconnect } from '../db.js'
-//Database connect
-async function main() {
-    state = await dbconnect()
-    console.log(await dbconnect())
-    if (state) {
-        serverConnect(console.log('Server status', state))
-    } else {
-        setTimeout(() => { main() }, 5000, console.log('restarting'))
-    }
+//Function to start server.
+function server() {
+    app.listen(PORT, () => { console.log(`Sever connection stable (${PORT})`, PORT ? true : false) })
 }
 
-//Server connect
-function serverConnect() {
-    const datanow = new Date(Date.now()).toUTCString();
-    app.listen(PORT, () => { console.log(`Server up on ${PORT},`, datanow) });
-}
-
-main()
-
-//Endpoints
-import { createorder } from './endpoints/create-order.js'
-app.post('/createorder', createorder, (req, res) => { 
+import { createorder } from '../endpoints/create-order.js';
+app.post('/createorder', createorder, () => {
 })
 
-app.post('/uporder', () => {
-
-})
-app.get('/readorder', () => {
-
-})
-app.delete('/deleteorder', () => {
-
+import { readorder } from '../endpoints/read-order.js';
+app.post('/readorder', readorder, () => {
 })
 
-//Not used
-import dotenv from 'dotenv/config'
-app.get('/test', (req) => {
+import { createpickup } from '../endpoints/create-pickup.js';
+app.post('/createpickup', createpickup, () => {
 })
+
+import { deletepickup } from '../endpoints/cancel-pickup.js';
+app.delete('/deletepickup', deletepickup, () => {
+})
+
+//Use only for tests.
+app.post('/tests', () => {
+})
+
+//Use only for develop.
+import { readDhlfileShipment } from '../endpoints/read-dhl-body.js';
+app.get('/dhlfile', readDhlfileShipment, () => {
+})
+
+server()
