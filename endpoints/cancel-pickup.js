@@ -3,7 +3,7 @@ const privatekey = 'Yepkitmaster';
 
 import fetch from 'node-fetch';
 
-let url = 'https://express.api.dhl.com/mydhlapi/test/pickups/';
+let url = 'https://express.api.dhl.com/mydhlapi/pickups/';
 const dhlorder = {
     method: 'DELETE',
     headers: {

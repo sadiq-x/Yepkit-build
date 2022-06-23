@@ -3,7 +3,10 @@ const privatekey = 'Yepkitmaster';
 
 import fetch from 'node-fetch';
 
-let url = 'https://express.api.dhl.com/mydhlapi/test/pickups';
+import client from 'yepkit-event-mdl';
+const topic = process.env.TOPIC_CREATEPICKUP;
+
+let url = 'https://express.api.dhl.com/mydhlapi/pickups';
 const dhlorder = {
     method: 'POST',
     headers: {
@@ -45,3 +48,17 @@ async function pickup(order) {
         .then(response => { return response })
         .catch(err => console.error(err));
 }
+
+//
+async function consumer(data) {
+    console.log(data);
+    dhlorder.body = data
+    let detailShip = await pickup({ dhlorder })
+    console.log(detailShip)
+}
+
+async function consumerTopic() {
+    client.consume(topic, consumer)
+}
+
+consumerTopic()

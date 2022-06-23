@@ -26,18 +26,18 @@ c8,mocha;
 '/dhlfile' => Read file /dhl-body.json , use only for develop.
 '/tests' => Use only for test.
 
+# Topics:
+"dhl-createorder", "dhl-createpickup";
+
 # Variable environment:
-PORT_SRV;(The environment variables by default are set to 0.)
-
-# Variable environment at files create-order.js/read-order.js/create-pickup.js/cancel-pickup.js:
-MESSAGE_REFERENCE, MESSAGE_REFERENCE_DATE, PLUGIN_NAME, PLUGIN_VERSION, SHIPPING_SYSTEM_PLATFORM_NAME, SHIPPING_SYSTEM_PLATFORM_VERSION, WEBSTORE_PLATFORM_NAME, WEBSTORE_PLATFORM_VERSION, AUTHORIZATION;(The environment variables by default are set to 0.)
-
+PORT_SRV, MESSAGE_REFERENCE, MESSAGE_REFERENCE_DATE, PLUGIN_NAME, PLUGIN_VERSION, SHIPPING_SYSTEM_PLATFORM_NAME, SHIPPING_SYSTEM_PLATFORM_VERSION, WEBSTORE_PLATFORM_NAME, WEBSTORE_PLATFORM_VERSION, AUTHORIZATION, CLIENT_HOST, CLIENT_PORT, CLIENT_ID, GROUP_ID, TOPIC_CREATEORDER, TOPIC_CREATEPICKUP;
+(The environment variables by default are set to 0.)
 
 # Curl :
-'/createorder' -> /curl-dhl-createorder.txt,
-'/readorder' -> /curl-dhl-readorder.txt,
-'/createpickup' -> /curl-dhl-createpickup.txt,
-'/deletepickup' -> /curl-dhl-deletepickup.txt;
+'/createorder' -> [->](./curl-dhl-createorder.txt),
+'/readorder' -> [->](./curl-dhl-readorder.txt),
+'/createpickup' -> [->](./curl-dhl-createpickup.txt),
+'/deletepickup' -> [->](./curl-dhl-deletepickup.txt);
 
 # npm start
 
