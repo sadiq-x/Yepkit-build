@@ -1,7 +1,10 @@
-import jwt from 'jsonwebtoken';
-const privatekey = 'Yepkitmaster';
-
 import fetch from 'node-fetch';
+
+import Auth from 'yepkit-authorization';
+const keyName = 'user-srv-key';
+const issuer = 'user-srv';
+const audience = 'yepkit.com';
+const auth = Auth(keyName, issuer, audience)
 
 import client from 'yepkit-event-mdl';
 const topic = process.env.TOPIC_CREATEORDER;
@@ -24,9 +27,8 @@ const dhlorder = {
 };
 
 export async function createorder(req, res) {
-    const token = generateToken(req.headers)
-    const verify = jwt.verify(token, privatekey)
-    if (verify) {
+    auth.init()
+    if (auth.checkAuthorized(req, 'admin')) {
         dhlorder.body = JSON.stringify(req.body)
         if (dhlorder.body) {
             console.log('DHL Order:', dhlorder)
@@ -34,11 +36,9 @@ export async function createorder(req, res) {
             console.log(detailShip)
             res.send(detailShip)
         }
+    } else {
+        res.send('Authorization denied')
     }
-}
-
-function generateToken(payload) {
-    return jwt.sign(payload, privatekey)
 }
 
 async function shipping(order) {

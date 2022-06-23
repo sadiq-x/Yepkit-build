@@ -19,6 +19,7 @@
     "mongodb": "^4.7.0",
     "node-fetch": "^3.2.6",
     "nodemon": "^2.0.16",
+    "yepkit-authorization": "^1.1.5",
     "yepkit-event-mdl": "^1.0.3"
   }
 }

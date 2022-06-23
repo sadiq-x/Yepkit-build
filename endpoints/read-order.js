@@ -1,7 +1,10 @@
-import jwt from 'jsonwebtoken';
-const privatekey = 'Yepkitmaster';
-
 import fetch from 'node-fetch';
+
+import Auth from 'yepkit-authorization';
+const keyName = 'user-srv-key';
+const issuer = 'user-srv';
+const audience = 'yepkit.com';
+const auth = Auth(keyName, issuer, audience)
 
 let url = 'https://express.api.dhl.com/mydhlapi/shipments/';
 const dhlorder = {
@@ -21,9 +24,8 @@ const dhlorder = {
 };
 
 export async function readorder(req, res) {
-    const token = generateToken(req.headers)
-    const verify = jwt.verify(token, privatekey)
-    if (verify) {
+    auth.init()
+    if (auth.checkAuthorized(req, 'admin')) {
         if (req.body.shipmentTrackingNumber) {
 
             url = `https://express.api.dhl.com/mydhlapi/test/shipments/${req.body.shipmentTrackingNumber}/tracking`;
@@ -35,11 +37,9 @@ export async function readorder(req, res) {
             console.log(detailTraking)
             res.send(detailTraking)
         }
+    } else {
+        res.send('Authorization denied')
     }
-}
-
-function generateToken(payload) {
-    return jwt.sign(payload, privatekey)
 }
 
 async function tracking(order) {

@@ -1,7 +1,10 @@
-import jwt from 'jsonwebtoken';
-const privatekey = 'Yepkitmaster';
-
 import fetch from 'node-fetch';
+
+import Auth from 'yepkit-authorization';
+const keyName = 'user-srv-key';
+const issuer = 'user-srv';
+const audience = 'yepkit.com';
+const auth = Auth(keyName, issuer, audience)
 
 let url = 'https://express.api.dhl.com/mydhlapi/pickups/';
 const dhlorder = {
@@ -22,9 +25,8 @@ const dhlorder = {
 };
 
 export async function deletepickup(req, res) {
-    const token = generateToken(req.headers)
-    const verify = jwt.verify(token, privatekey)
-    if (verify) {
+    auth.init()
+    if (auth.checkAuthorized(req, 'admin')) {
         if (req.body.dispatchConfirmationNumber) {
 
             url = `https://express.api.dhl.com/mydhlapi/test/pickups/${req.body.dispatchConfirmationNumber}?requestorName=${req.body.requestorName}&reason=${req.body.reason}`;
@@ -35,11 +37,9 @@ export async function deletepickup(req, res) {
             console.log(detailCancelPickup)
             res.send(detailCancelPickup)
         }
+    } else {
+        res.send('Authorization denied')
     }
-}
-
-function generateToken(payload) {
-    return jwt.sign(payload, privatekey)
 }
 
 async function cancelpickup(order) {
