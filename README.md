@@ -5,8 +5,8 @@ DHL order/delivery and pickup service.
 https://developer.dhl.com/api-reference/dhl-express-mydhl
 
 # Url Dhl Express API
-https://express.api.dhl.com/mydhlapi -> Url to work.
-https://express.api.dhl.com/mydhlapi/test -> Url test.
+* https://express.api.dhl.com/mydhlapi -> Url to work.
+* https://express.api.dhl.com/mydhlapi/test -> Url test.
 
 # Type:
 Module.
