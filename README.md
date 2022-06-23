@@ -18,13 +18,13 @@ express,nodemon,node-fetch,yepkit-authorization,yepkit-event-mdl;
 c8,mocha;
 
 # Endpoints:
-'/createorder' => Create shipment.
-'/readorder' => Read a shipment created.
-'/createpickup' => Create pickup.
-'/deletpickup' => Delete pickup.
+* '/createorder' => Create shipment.
+* '/readorder' => Read a shipment created.
+* '/createpickup' => Create pickup.
+* '/deletpickup' => Delete pickup.
 
-'/dhlfile' => Read file /dhl-body.json , use only for develop.
-'/tests' => Use only for test.
+* '/dhlfile' => Read file /dhl-body.json , use only for develop.
+* '/tests' => Use only for test.
 
 # Topics:
 "dhl-createorder", "dhl-createpickup";
@@ -34,13 +34,12 @@ PORT_SRV, MESSAGE_REFERENCE, MESSAGE_REFERENCE_DATE, PLUGIN_NAME, PLUGIN_VERSION
 (The environment variables by default are set to 0.)
 
 # Curl :
-'/createorder' -> [->](./curl-dhl-createorder.txt),
-'/readorder' -> [->](./curl-dhl-readorder.txt),
-'/createpickup' -> [->](./curl-dhl-createpickup.txt),
-'/deletepickup' -> [->](./curl-dhl-deletepickup.txt);
+* '/createorder' -> [curl](./curl-dhl-createorder.txt),
+* '/readorder' -> [curl](./curl-dhl-readorder.txt),
+* '/createpickup' -> [curl](./curl-dhl-createpickup.txt),
+* '/deletepickup' -> [curl](./curl-dhl-deletepickup.txt);
 
-# npm start
+```
+$ npm start
+```
 
-Others:
-npm run nodemon
----------------
