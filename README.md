@@ -12,17 +12,39 @@ https://developer.dhl.com/api-reference/dhl-express-mydhl
 Module.
 
 # Npm dependecies:
-express,nodemon,node-fetch,yepkit-authorization,yepkit-event-mdl;
-
-# Npm test dependecies:
-c8,mocha;
+* express,nodemon,node-fetch,yepkit-authorization,yepkit-event-mdl;
 
 # Endpoints:
-* '/createorder' => Create shipment.
-* '/readorder' => Read a shipment created.
-* '/createpickup' => Create pickup.
-* '/deletpickup' => Delete pickup.
+## '/createorder' => Create shipment:
+* Code 201 - Shipment Created.
+* Code 400 - Wrong input parameters.
+* Code 422 - Wrong input parameters.
+* Code 500 - Process errors.
+* If the error is invalid credentials, the error is located in the Dhl Express access data
+api.
+* If the error is token failed, the error is located in jsonwebtoken.
+## '/readorder' => Read a shipment created:
+* Code 200 - Shipment details found.
+* Code 400 - Wrong input parameters.
+* Code 404 - No data found.
+* If the error is invalid credentials, the error is located in the Dhl Express access data
+api.
+* If the error is token failed, the error is located in jsonwebtoken.
+## '/createpickup' => Create pickup:
+* Code 201 - Pickup created.
+* Code 400 - Wrong input parameters.
+* If the error is invalid credentials, the error is located in the Dhl Express access data
+api.
+* If the error is token failed, the error is located in jsonwebtoken.
+## '/deletpickup' => Delete pickup:
+* Code 201 - Pickup cancelled.
+* Code 400 - Pickup already cancelled or completed / Wrong input parameters.
+* Code 404 - Pickup not found.
+* If the error is invalid credentials, the error is located in the Dhl Express access data
+api.
+* If the error is token failed, the error is located in jsonwebtoken.
 
+# Other endpoints:
 * '/dhlfile' => Read file /dhl-body.json , use only for develop.
 * '/tests' => Use only for test.
 
