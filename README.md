@@ -1,7 +1,7 @@
 # Project description
 DHL order/delivery and pickup service.
 
-# Dhl API
+# Dhl Express API
 https://developer.dhl.com/api-reference/dhl-express-mydhl
 
 # Url Dhl Express API
@@ -48,8 +48,9 @@ Module.
 # Endpoints description:
 ## '/createorder' : (POST request)
 #### Request:
-Authorization jsonwebtoken : Authorizationherader.
-(Example)
+* Authorization jsonwebtoken : Authorizationherader.
+* (Example)
+```
 '{
   "plannedShippingDateAndTime": "2019-08-04T14:00:31GMT+01:00",
   "pickup": {
@@ -674,6 +675,7 @@ Authorization jsonwebtoken : Authorizationherader.
     "packagesCount": 1
   }
 }'
+```
 ####  Response:
 * Code 201 - Shipment Created.
 * Code 400 - Wrong input parameters.
@@ -685,9 +687,11 @@ api.
 -
 ## '/readorder' : (POST request)
 #### Request:
-Authorization jsonwebtoken : Authorizationherader.
-(Example)
+* Authorization jsonwebtoken : Authorizationherader.
+* (Example)
+```
 '{"shipmentTrackingNumber":"1234567890"}'
+```
 #### Response:
 * Code 200 - Shipment details found.
 * Code 400 - Wrong input parameters.
@@ -698,8 +702,9 @@ api.
 -
 ## '/createpickup' : (POST request)
 #### Request:
-Authorization jsonwebtoken : Authorizationherader.
-(Example)
+* Authorization jsonwebtoken : Authorizationherader.
+* (Example)
+```
 '{
   "plannedPickupDateAndTime": "2019-08-04T14:00:31GMT+01:00",
   "closeTime": "18:00",
@@ -834,6 +839,7 @@ Authorization jsonwebtoken : Authorizationherader.
     }
   ]
 }'
+```
 #### Response:
 * Code 201 - Pickup created.
 * Code 400 - Wrong input parameters.
@@ -843,9 +849,11 @@ api.
 -
 ## '/deletpickup' : (DELETE request)
 #### Request:
-Authorization jsonwebtoken : Authorizationherader.
-(Example)
+* Authorization jsonwebtoken : Authorizationherader.
+* (Example)
+```
 '{"dispatchConfirmationNumber":"123","requestorName":"yepkit","reason":"example"}'
+```
 #### Response:
 * Code 201 - Pickup cancelled.
 * Code 400 - Pickup already cancelled or completed / Wrong input parameters.
