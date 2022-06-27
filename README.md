@@ -881,7 +881,7 @@ or
 ```
 $ node src/index.js
 ```
-# project structure:
+# Project structure:
 ```
 /ys2-dhlexpressapi
     /endpoints
