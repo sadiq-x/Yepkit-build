@@ -49,7 +49,7 @@ Module.
 ## '/createorder' : (POST request)
 #### Request:
 * Authorization jsonwebtoken : Authorizationherader.
-* (Example)
+* (Example):
 ```
 '{
   "plannedShippingDateAndTime": "2019-08-04T14:00:31GMT+01:00",
@@ -684,11 +684,11 @@ Module.
 * If the error is invalid credentials, the error is located in the Dhl Express access data
 api.
 * If the error is token failed, the error is located in jsonwebtoken.
--
+
 ## '/readorder' : (POST request)
 #### Request:
 * Authorization jsonwebtoken : Authorizationherader.
-* (Example)
+* (Example):
 ```
 '{"shipmentTrackingNumber":"1234567890"}'
 ```
@@ -699,11 +699,11 @@ api.
 * If the error is invalid credentials, the error is located in the Dhl Express access data
 api.
 * If the error is token failed, the error is located in jsonwebtoken.
--
+
 ## '/createpickup' : (POST request)
 #### Request:
 * Authorization jsonwebtoken : Authorizationherader.
-* (Example)
+* (Example):
 ```
 '{
   "plannedPickupDateAndTime": "2019-08-04T14:00:31GMT+01:00",
@@ -846,11 +846,11 @@ api.
 * If the error is invalid credentials, the error is located in the Dhl Express access data
 api.
 * If the error is token failed, the error is located in jsonwebtoken.
--
+
 ## '/deletpickup' : (DELETE request)
 #### Request:
 * Authorization jsonwebtoken : Authorizationherader.
-* (Example)
+* (Example):
 ```
 '{"dispatchConfirmationNumber":"123","requestorName":"yepkit","reason":"example"}'
 ```
