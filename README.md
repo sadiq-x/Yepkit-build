@@ -48,6 +48,7 @@ Module.
 # Endpoints description:
 ## '/createorder' : (POST request)
 #### Request:
+* Content-Type: application/json.
 * Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
@@ -687,6 +688,7 @@ api.
 
 ## '/readorder' : (POST request)
 #### Request:
+* Content-Type: application/json.
 * Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
@@ -702,6 +704,7 @@ api.
 
 ## '/createpickup' : (POST request)
 #### Request:
+* Content-Type: application/json.
 * Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
@@ -849,6 +852,7 @@ api.
 
 ## '/deletpickup' : (DELETE request)
 #### Request:
+* Content-Type: application/json.
 * Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
@@ -904,4 +908,4 @@ $ node src/index.js
 ```
 
 # Podman/Docker build:
-* [Podman build image - HERE](./Containerfile)
+* [Build image - HERE](./Containerfile)
