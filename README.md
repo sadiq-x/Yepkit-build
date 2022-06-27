@@ -48,7 +48,7 @@ Module.
 # Endpoints description:
 ## '/createorder' : (POST request)
 #### Request:
-* Authorization jsonwebtoken : Authorizationherader.
+* Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
 '{
@@ -687,7 +687,7 @@ api.
 
 ## '/readorder' : (POST request)
 #### Request:
-* Authorization jsonwebtoken : Authorizationherader.
+* Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
 '{"shipmentTrackingNumber":"1234567890"}'
@@ -702,7 +702,7 @@ api.
 
 ## '/createpickup' : (POST request)
 #### Request:
-* Authorization jsonwebtoken : Authorizationherader.
+* Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
 '{
@@ -849,7 +849,7 @@ api.
 
 ## '/deletpickup' : (DELETE request)
 #### Request:
-* Authorization jsonwebtoken : Authorizationherader.
+* Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
 '{"dispatchConfirmationNumber":"123","requestorName":"yepkit","reason":"example"}'
@@ -878,6 +878,7 @@ or
 $ node src/index.js
 ```
 # project structure:
+```
 /ys2-dhlexpressapi
     /endpoints
      cancel-pickup.js
@@ -900,6 +901,7 @@ $ node src/index.js
     package-lock.json
     package.json
     README.md
+```
 
 # Podman/Docker build:
 * [Podman build image - HERE](./Containerfile)
