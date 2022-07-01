@@ -3,7 +3,7 @@
 ### Date 1 July
 ```
 .
-├── endpoints
+├── [endpoints] ('../endpoints')
 │   ├── delete-item
 │   ├── get-item
 │   ├── insert-item
