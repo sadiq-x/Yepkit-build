@@ -19,3 +19,5 @@
     └── index.js
 ```
 # Continous work #
+
+#### See user-srv to example ####
