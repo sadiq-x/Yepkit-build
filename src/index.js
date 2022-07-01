@@ -21,8 +21,8 @@ function startServer() {
         })
     }
 }
-
-app.post('/insert-item')
+import {createStockItem} from '../endpoints/insert-item/create-stockItem.js'
+app.post('/insert-item',createStockItem)
 
 app.get('/get-item')
 
@@ -33,8 +33,6 @@ app.put('/update-item')
 import Item from '../entities/item.js'
 app.get('/test', async (req, res) => {
     const item = new Item()
-    //item.getStockItemByName('Ykush')
-    //item.getStockItemById("62bdb279f0b3289ee6476eee")
-    item.deleteStockById("62bdc136e48eab516588ef3e")
+    console.log(item)
 })
 main()
