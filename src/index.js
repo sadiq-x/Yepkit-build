@@ -22,9 +22,10 @@ function startServer() {
     }
 }
 import {createStockItem} from '../endpoints/insert-item/create-stockItem.js'
-app.post('/insert-item',createStockItem)
+app.post('/insertstock',createStockItem)
 
-app.get('/get-item')
+import {readStockItem} from '../endpoints/get-item/find-stockItem.js'
+app.post('/readstock',readStockItem)
 
 app.delete('/delete-item')
 

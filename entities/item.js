@@ -6,18 +6,14 @@ import { ObjectId } from 'mongodb';
 export default class Item {
     constructor() {
         this.doc = {
-            user: null,              // string
-            email: null,             // string
-            password: null,          // string
-            sockItem: {
-                type: null,          // string  Product,Debug or Component
-                name: null,          // string  Name
-                quantity: null,      // string  Quantity
-                reference: null,     // string  Reference of product, debug or component
-                date: null           // date    Date
-            },
-            status: "uncorfirmed"   //string, "uncorfimed"| "confirmed" 
-            //Status will confirm that the document has been sent
+            user: null,              // string  Required.
+            stockItem: {
+                type: null,          // string - Required. Product,Debug or Component.
+                name: null,          // string - Required. Name.
+                quantity: null,      // string - Required. Quantity.
+                reference: null,     // string - Required. Reference of product, debug or component.
+                date: null           // Date - Required. The date is automatically inserted.
+            }
         }
     }
 
@@ -31,37 +27,13 @@ export default class Item {
         return this.doc.user
     }
 
-    //Email Get/Set
-    setEmail(value) {
-        this.doc.email = value
-    }
-    getEmail() {
-        return this.doc.email
-    }
-
-    //Password Get/Set
-    setPassword(value) {
-        this.doc.password = value
-    }
-    getPassword() {
-        return this.doc.password
-    }
-
     //StockItem Get/Set
     setStockItem(value) {
-        this.doc.sockItem = value
-        this.doc.sockItem.date = Date.now()
+        this.doc.stockItem = value
+        this.doc.stockItem.date = Date.now()
     }
     getStockItem() {
-        return this.doc.sockItem
-    }
-
-    //Status Get/Set
-    getStatus() {
-        return this.doc.status
-    }
-    setStatus(value) {
-        this.doc.status = value
+        return this.doc.stockItem
     }
 
     //Mongo Db operations
@@ -78,22 +50,32 @@ export default class Item {
 
     /** Send Stock with the provided document filled with stock.
      * Required stock. */
-    async sendStockItem(doc) {
-        if (doc && doc == this.doc.sockItem ) {
+    async sendStockItem() {
+        if (this.doc) {
             let collection = getClient().collection(collectionName)
-            const result = await collection.insertOne( doc )
-            console.log('Inserted document accepted', result.insertedId)
+            const result = await collection.insertOne(this.doc)
+            console.log('Inserted document accepted', result)
         } else {
             console.log(new Error('Inserted document dennied'))
         }
     }
 
+    async getAllStock(){
+        let collection = await getClient().collection(collectionName)
+        const result = await collection.findOne({})
+        if (result) {
+            console.log(result, 'all results')
+        } else {
+            console.log(new Error('No result found'))
+        }
+    }
+
     /** Get Stock with the provided name. */
     async getStockItemByName(nameItem) {
-        let colection = await getClient().collection(collectionName)
-        const result = await colection.findOne({ name: nameItem })
+        let collection = await getClient().collection(collectionName)
+        const result = await collection.findOne({'sockItem.name':nameItem})
         if (result) {
-            console.log(result, 'name')
+            console.log(result, 'results for name')
         } else {
             console.log(new Error('No name found'))
         }
@@ -104,7 +86,7 @@ export default class Item {
         let collection = getClient().collection(collectionName)
         const result = await collection.findOne({ _id: new ObjectId(id) })
         if (result) {
-            console.log(result, 'id')
+            console.log(result, 'results for id')
         } else {
             console.log(new Error('No id found'))
         }
@@ -113,11 +95,22 @@ export default class Item {
     /** Get Stock with the provided reference. */
     async getStockItemByReference(ref) {
         let colection = await getClient().collection(collectionName)
-        const result = await colection.findOne({ reference: ref })
+        const result = await colection.findOne({'sockItem.reference':ref})
         if (result) {
-            console.log(result, 'reference')
+            console.log(result, 'results for reference')
         } else {
             console.log(new Error('No reference found'))
+        }
+    }
+
+    /** Get Stock with the provided reference. */
+    async getStockItemByType(type) {
+        let colection = await getClient().collection(collectionName)
+        const result = await colection.findOne({'sockItem.type':type})
+        if (result) {
+            console.log(result, 'results for type')
+        } else {
+            console.log(new Error('No type found'))
         }
     }
 

@@ -14,6 +14,7 @@
   "dependencies": {
     "express": "^4.18.1",
     "mongodb": "^4.7.0",
-    "nodemon": "^2.0.18"
+    "nodemon": "^2.0.18",
+    "yepkit-authorization": "^1.1.5"
   }
 }
