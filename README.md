@@ -92,25 +92,25 @@ reference: '{"delete":{"reference":""}}'
 
 # Curl:
 * '/insertstock' -> 
-- curl -X POST http://localhost:PORT_SRV/insertstock -H 'Content-Type: application/json' -d '{"user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}',
+- curl -X POST http://localhost:PORT_SRV/insertstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}',
 * '/readstock' -> 
-- id: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"id":""}}'
+- id: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"id":""}}'
 
-- name: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"name":""}}'
+- name: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"name":""}}'
 
-- type: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"type":""}}'
+- type: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"type":""}}'
 
-- reference: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"reference":""}}'
+- reference: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"reference":""}}'
 
-- all: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"all":""}}',
+- all: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"all":""}}',
 * '/deletestock' -> 
-- id: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -d '{"delete":{"id":""}}'
+- id: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"delete":{"id":""}}'
 
-- name: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -d '{"delete":{"name":""}}'
+- name: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"delete":{"name":""}}'
 
-- reference: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -d '{"delete":{"reference":""}}',
+- reference: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"delete":{"reference":""}}',
 * '/updatestock' -> 
-- curl -X PUT http://localhost:PORT_SRV/updatestock -H 'Content-Type: application/json' -d '{"id":"","user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}';
+- curl -X PUT http://localhost:PORT_SRV/updatestock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"id":"","user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}';
 
 # System Administration:
 * Start service:
