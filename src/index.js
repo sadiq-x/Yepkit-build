@@ -21,19 +21,20 @@ function startServer() {
         })
     }
 }
+
+//Endpoints
 import {createStockItem} from '../endpoints/insert-item/create-stockItem.js'
 app.post('/insertstock',createStockItem)
 
 import {readStockItem} from '../endpoints/get-item/find-stockItem.js'
 app.post('/readstock',readStockItem)
 
-app.delete('/delete-item')
+import {deleteStockItem} from '../endpoints/delete-item/delete-item.js'
+app.delete('/deletestock',deleteStockItem)
 
-app.put('/update-item')
+import {updateStockItem} from '..//endpoints/update-item/update-stockitem.js'
+app.put('/updatestock',updateStockItem)
 
-import Item from '../entities/item.js'
-app.get('/test', async (req, res) => {
-    const item = new Item()
-    console.log(item)
-})
+app.get('/test', async (req, res) => {})
+
 main()

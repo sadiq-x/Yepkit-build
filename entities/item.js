@@ -19,14 +19,10 @@ export default class Item {
 
     //Document operations
 
-    //User Get/Set
+    //User Set
     setUser(value) {
         this.doc.user = value
     }
-    getUser() {
-        return this.doc.user
-    }
-
     //StockItem Get/Set
     setStockItem(value) {
         this.doc.stockItem = value
@@ -38,131 +34,131 @@ export default class Item {
 
     //Mongo Db operations
 
-    /**
-   * Returns the mongoDB id object converted to string.
-   * For example, for the following id oject
-   * _id: new ObjectId("61826225d4e6aea7efe23355")
-   * "61826225d4e6aea7efe23355" will be returned.
-   */
-    getId() {
-        return this.doc._id.toString();
-    }
-
     /** Send Stock with the provided document filled with stock.
      * Required stock. */
     async sendStockItem() {
         if (this.doc) {
             let collection = getClient().collection(collectionName)
             const result = await collection.insertOne(this.doc)
-            console.log('Inserted document accepted', result)
+            return ('Inserted document accepted', result.insertedId)
         } else {
-            console.log(new Error('Inserted document dennied'))
+            console.log('Inserted document dennied')
         }
     }
 
-    async getAllStock(){
+    /** Get all Stock. */
+    async getAllStock() {
         let collection = await getClient().collection(collectionName)
-        const result = await collection.findOne({})
+        const result = await collection.find({}).toArray()
         if (result) {
             console.log(result, 'all results')
         } else {
-            console.log(new Error('No result found'))
+            console.log('No result found')
         }
     }
 
-    /** Get Stock with the provided name. */
+    /** Get Stock with the provided name. 
+     * Required name. */
     async getStockItemByName(nameItem) {
         let collection = await getClient().collection(collectionName)
-        const result = await collection.findOne({'sockItem.name':nameItem})
+        const result = await collection.findOne({ 'stockItem.name': nameItem })
         if (result) {
             console.log(result, 'results for name')
         } else {
-            console.log(new Error('No name found'))
+            console.log('No name found')
         }
     }
 
-    /** Get Stock with the provided id. */
+    /** Get Stock with the provided id. 
+     * Required id. */
     async getStockItemById(id) {
-        let collection = getClient().collection(collectionName)
-        const result = await collection.findOne({ _id: new ObjectId(id) })
-        if (result) {
-            console.log(result, 'results for id')
-        } else {
-            console.log(new Error('No id found'))
-        }
+        try {
+            let collection = getClient().collection(collectionName)
+            const result = await collection.findOne({ _id: new ObjectId(id) })
+            if (result) {
+                console.log(result, 'results for id')
+            } else {
+                console.log('No id found')
+            }
+        } catch (e) { console.log('No id found') }
     }
 
-    /** Get Stock with the provided reference. */
+    /** Get Stock with the provided reference. 
+     * Required reference. */
     async getStockItemByReference(ref) {
         let colection = await getClient().collection(collectionName)
-        const result = await colection.findOne({'sockItem.reference':ref})
+        const result = await colection.findOne({ 'stockItem.reference': ref })
         if (result) {
             console.log(result, 'results for reference')
         } else {
-            console.log(new Error('No reference found'))
+            console.log('No reference found')
         }
     }
 
-    /** Get Stock with the provided reference. */
+    /** Get Stock with the provided type. 
+     * Required type. */
     async getStockItemByType(type) {
         let colection = await getClient().collection(collectionName)
-        const result = await colection.findOne({'sockItem.type':type})
-        if (result) {
+        const result = await colection.find({ 'stockItem.type': { $all: [type] } }).toArray()
+        if (result && result.length >= 1) {
             console.log(result, 'results for type')
         } else {
-            console.log(new Error('No type found'))
+            console.log('No type found')
         }
     }
 
-    /** Delete document with the provided id. */
+    /** Delete document with the provided id. 
+     * Required id. */
     async deleteStockById(id) {
-        let collection = getClient().collection(collectionName)
-        const result = await collection.deleteOne({ _id: new ObjectId(id) })
-        if (result.deletedCount === 1) {
-            console.log(Date.now(), " Successfully deleted one document");
-            return true;
-        } else {
-            console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
-            return false;
-        }
+        try {
+            let collection = getClient().collection(collectionName)
+            const result = await collection.deleteOne({ _id: new ObjectId(id) })
+            if (result.deletedCount === 1) {
+                console.log(Date.now(), " Successfully deleted  document");
+            } else {
+                console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
+            }
+        } catch (e) { console.log(Date.now(), " No documents matched the query. Deleted 0 documents") }
     }
 
-    /** Delete document with the provided nameItem. */
+    /** Delete document with the provided nameItem. 
+     * Required nameItem. */
     async deleteStockByName(nameItem) {
         let collection = getClient().collection(collectionName)
-        const result = await collection.deleteOne({ name: nameItem })
+        const result = await collection.deleteOne({ 'stockItem.name': nameItem })
         if (result.deletedCount === 1) {
             console.log(Date.now(), " Successfully deleted document", nameItem);
-            return true;
         } else {
             console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
-            return false;
         }
     }
 
-    /** Delete document with the provided type. */
-    async deleteStockByType(typ) {
-        let collection = getClient().collection(collectionName)
-        const result = await collection.deleteOne({ type: typ })
-        if (result.deletedCount === 1) {
-            console.log(Date.now(), " Successfully deleted document", typ);
-            return true;
-        } else {
-            console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
-            return false;
-        }
-    }
-
-    /** Delete document with the provided reference. */
+    /** Delete document with the provided reference. 
+     * Required reference. */
     async deleteStockByReference(ref) {
         let collection = getClient().collection(collectionName)
-        const result = await collection.deleteOne({ reference: ref })
+        const result = await collection.deleteOne({ 'stockItem.reference': ref })
         if (result.deletedCount === 1) {
             console.log(Date.now(), " Successfully deleted document", ref);
-            return true;
         } else {
             console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
-            return false;
+        }
+    }
+
+    /** Update document with the provided id. 
+     * Required id and completed document stock. */
+    async updateStockbyId(id) {
+        try {
+            let collection = getClient().collection(collectionName)
+            const query = { _id: new ObjectId(id) }
+            const result = await collection.updateMany(query, { $set: this.doc })
+            if (result.modifiedCount >= 1 ) {
+                console.log(this.getStockItem().date, " Successfully update document", id);
+            } else {
+                console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
+            }
+        } catch {
+            console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
         }
     }
 }
