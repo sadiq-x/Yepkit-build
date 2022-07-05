@@ -1,36 +1,130 @@
-# TO DO!!!!!!!!
+# Project description
+Inventory service of stocks of products, components, hubs.
 
+# Type:
+Module.
 
-# Curl createStock:
-curl -X POST http://localhost:5999/insertstock -H 'Content-Type: application/json' -d '{"user":"sadiqV1","stockItem":{"type":"Product","name":"Ykush","quantity":"10","reference":"02-P"}}'
-curl -X POST http://localhost:5999/insertstock -H 'Content-Type: application/json' -d '{"user":"sadiqV1","stockItem":{"type":"Product","name":"Ykush3","quantity":"100","reference":"03-P"}}'
-curl -X POST http://localhost:5999/insertstock -H 'Content-Type: application/json' -d '{"user":"sadiqV1","stockItem":{"type":"Product","name":"YkushXs","quantity":"45","reference":"Xs-P"}}'
+# Npm dependecies:
+* express,mongodb,nodemon,yepkit-authorization;
 
+# Configuration and Variable environment:
+* PORT_SRV = Port that the service will listen to (Default value 0 and required),
+* MONGO_DB = URI acess (Default value 0 and required).
+
+# Endpoints:
+### Available endpoints:
+* '/insertstock' => Create stock inventory,
+* '/readstock' => Read stock inventory,
+* '/deletestock' => Delete stock inventory,
+* '/updatestock' => Update stock inventory;
+
+### Others endpoints:
+* '/tests' => Use only for test;
+
+# Endpoints description:
+## '/insertstock' : (POST request)
+#### Request:
+* Content-Type: application/json.
+* Authorization jsonwebtoken : Authorizationheader.
+* Body:
+```
 '{"user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}'
+```
+####  Response:
+* Code 200 - .
+* Code 400 - .
+* If the error is invalid credentials or acess, the error is located on mongodb URI.
+* If the error is token failed, the error is located in jsonwebtoken.
 
-//Example with request completed
-'{"user":"sadiq","stockItem":{"type":"product","name":"Ykush3","quantity":"10","reference":"0003"}}'
+## '/readstock' : (POST request)
+#### Request:
+* Content-Type: application/json.
+* Authorization jsonwebtoken : Authorizationheader.
+* Body:
+```
+id: '{"search":{"id":""}}'
 
+name: '{"search":{"name":""}}'
 
-# Curl readStock:
-id: curl -X POST http://localhost:5999/readstock -H 'Content-Type: application/json' -d '{"search":{"id":"62c45a28013269222807fc46"}}'
+type: '{"search":{"type":""}}'
 
-name: curl -X POST http://localhost:5999/readstock -H 'Content-Type: application/json' -d '{"search":{"name":""}}'
+reference: '{"search":{"reference":""}}'
 
-type: curl -X POST http://localhost:5999/readstock -H 'Content-Type: application/json' -d '{"search":{"type":"Product"}}'
+all: '{"search":{"all":""}}'
+```
+#### Response:
+* Code 200 - .
+* Code 400 - .
+* If the error is invalid credentials or acess, the error is located on mongodb URI.
+* If the error is token failed, the error is located in jsonwebtoken.
 
-reference: curl -X POST http://localhost:5999/readstock -H 'Content-Type: application/json' -d '{"search":{"reference":""}}'
+## '/deletestock' : (DELETE request)
+#### Request:
+* Content-Type: application/json.
+* Authorization jsonwebtoken : Authorizationheader.
+* Body:
+```
+id: '{"delete":{"id":""}}'
 
-all: curl -X POST http://localhost:5999/readstock -H 'Content-Type: application/json' -d '{"search":{"all":""}}'
+name: '{"delete":{"name":""}}'
 
-# Curl deletestock:
-id: curl -X DELETE http://localhost:5999/deletestock -H 'Content-Type: application/json' -d '{"delete":{"id":"62c457e55bf19163ac6a4aed"}}'
+reference: '{"delete":{"reference":""}}'
+```
+#### Response:
+* Code 200 - .
+* Code 400 - .
+* If the error is invalid credentials or acess, the error is located on mongodb URI.
+* If the error is token failed, the error is located in jsonwebtoken.
 
-name: curl -X DELETE http://localhost:5999/deletestock -H 'Content-Type: application/json' -d '{"delete":{"name":""}}'
+## '/updatestock' : (PUT request)
+#### Request:
+* Content-Type: application/json.
+* Authorization jsonwebtoken : Authorizationheader.
+* (Example):
+```
+'{"id":"","user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}'
+```
+#### Response:
+* Code 200 - .
+* Code 400 - .
+* If the error is invalid credentials or acess, the error is located on mongodb URI.
+* If the error is token failed, the error is located in jsonwebtoken.
 
-reference: curl -X DELETE http://localhost:5999/deletestock -H 'Content-Type: application/json' -d '{"delete":{"reference":""}}'
+# Curl:
+* '/insertstock' -> 
+- curl -X POST http://localhost:PORT_SRV/insertstock -H 'Content-Type: application/json' -d '{"user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}',
+* '/readstock' -> 
+- id: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"id":""}}'
 
-# Curl updateStock:
+- name: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"name":""}}'
 
+- type: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"type":""}}'
 
-curl -X PUT http://localhost:5999/updatestock -H 'Content-Type: application/json' -d '{"id":"62c457e55bf19163ac6a4aed","user":"SadiqV2","stockItem":{"type":"Product","name":"Ykush3","quantity":"100","reference":"03-Y"}}'
+- reference: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"reference":""}}'
+
+- all: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -d '{"search":{"all":""}}',
+* '/deletestock' -> 
+- id: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -d '{"delete":{"id":""}}'
+
+- name: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -d '{"delete":{"name":""}}'
+
+- reference: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -d '{"delete":{"reference":""}}',
+* '/updatestock' -> 
+- curl -X PUT http://localhost:PORT_SRV/updatestock -H 'Content-Type: application/json' -d '{"id":"","user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}';
+
+# System Administration:
+* Start service:
+```
+$ npm start
+```
+or
+```
+$ node src/index.js
+```
+# Project structure:
+```
+
+```
+
+# Podman/Docker build:
+* [Build image - HERE]()
