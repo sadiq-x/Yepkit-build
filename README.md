@@ -28,7 +28,7 @@ Module.
 * Authorization jsonwebtoken : Authorizationheader.
 * Body:
 ```
-'{"user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}'
+'{"stockItem":{"type":"","name":"","quantity":"","reference":""}}'
 ```
 ####  Response:
 * Code 200 - .
@@ -46,7 +46,7 @@ id: '{"search":{"id":""}}'
 
 name: '{"search":{"name":""}}'
 
-type: '{"search":{"type":""}}'
+type: '{"search":{"type":""}}'  ----> ??
 
 reference: '{"search":{"reference":""}}'
 
@@ -82,7 +82,7 @@ reference: '{"delete":{"reference":""}}'
 * Authorization jsonwebtoken : Authorizationheader.
 * (Example):
 ```
-'{"id":"","user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}'
+'{"id":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}'
 ```
 #### Response:
 * Code 200 - .
@@ -91,8 +91,9 @@ reference: '{"delete":{"reference":""}}'
 * If the error is token failed, the error is located in jsonwebtoken.
 
 # Curl:
+(Request using module 'yepkit-authorization', need token)
 * '/insertstock' -> 
-- curl -X POST http://localhost:PORT_SRV/insertstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}',
+- curl -X POST http://localhost:PORT_SRV/insertstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"stockItem":{"type":"","name":"","quantity":"","reference":""}}',
 * '/readstock' -> 
 - id: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"id":""}}'
 
@@ -110,7 +111,7 @@ reference: '{"delete":{"reference":""}}'
 
 - reference: curl -X DELETE http://localhost:PORT_SRV/deletestock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"delete":{"reference":""}}',
 * '/updatestock' -> 
-- curl -X PUT http://localhost:PORT_SRV/updatestock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"id":"","user":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}';
+- curl -X PUT http://localhost:PORT_SRV/updatestock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"id":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}';
 
 # System Administration:
 * Start service:
