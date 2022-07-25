@@ -1,0 +1,29 @@
+html {
+  height: 100%;
+}
+
+.SiteHeader {
+  background-color: azure;
+  text-align: center;
+  padding: 15px;
+  border: 1px solid black;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+main {
+  background-color:rgb(105, 192, 221);
+  margin-left: 25%;
+  margin-right: 25%;
+  border: 1px solid black;
+  padding: 10px;
+  margin-top: 3px;
+  text-align: center;
+}
+
+footer {
+  background-color: azure;
+  text-align: center;
+}
+
+
