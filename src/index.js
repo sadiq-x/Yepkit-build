@@ -5,12 +5,13 @@ const PORT = process.env.PORT_SRV || 9555
 let state;
 
 import { dbConnect } from '../src/db.js'
+
 async function main() {
     state = await dbConnect()
     if (state) {
         startServer()
-    }else{
-        setTimeout(()=>{main()},5000,console.log('reconnecting'))
+    } else {
+        setTimeout(() => { main() }, 5000, console.log('reconnecting'))
     }
 }
 
@@ -23,18 +24,18 @@ function startServer() {
 }
 
 //Endpoints
-import {createStockItem} from '../endpoints/insert-item/create-stockItem.js'
-app.post('/insertstock',createStockItem)
+import { createStockItem } from '../endpoints/insert-item/create-stockItem.js'
+app.post('/insertstock', createStockItem)
 
-import {readStockItem} from '../endpoints/get-item/find-stockItem.js'
-app.post('/readstock',readStockItem)
+import { readStockItem } from '../endpoints/get-item/find-stockItem.js'
+app.post('/readstock', readStockItem)
 
-import {deleteStockItem} from '../endpoints/delete-item/delete-item.js'
-app.delete('/deletestock',deleteStockItem)
+import { deleteStockItem } from '../endpoints/delete-item/delete-item.js'
+app.delete('/deletestock', deleteStockItem)
 
-import {updateStockItem} from '..//endpoints/update-item/update-stockitem.js'
-app.put('/updatestock',updateStockItem)
+import { updateStockItem } from '..//endpoints/update-item/update-stockitem.js'
+app.put('/updatestock', updateStockItem)
 
-app.get('/test', async (req, res) => {})
+app.get('/test', async (req, res) => { })
 
 main()

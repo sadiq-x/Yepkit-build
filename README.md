@@ -42,15 +42,15 @@ Module.
 * Authorization jsonwebtoken : Authorizationheader.
 * Body:
 ```
-id: '{"search":{"id":""}}'
+'{"id": '{"search":{"id":""}}'
 
-name: '{"search":{"name":""}}'
+'{"name": '{"search":{"name":""}}'
 
-type: '{"search":{"type":""}}'  ----> ??
+'{"type": '{"search":{"type":""}}'  ----> ??
 
-reference: '{"search":{"reference":""}}'
+'{"reference": '{"search":{"reference":""}}'
 
-all: '{"search":{"all":""}}'
+'{"all": '{"search":{"all":""}}'
 ```
 #### Response:
 * Code 200 - .
@@ -64,11 +64,11 @@ all: '{"search":{"all":""}}'
 * Authorization jsonwebtoken : Authorizationheader.
 * Body:
 ```
-id: '{"delete":{"id":""}}'
+'{"id": '{"delete":{"id":""}}'
 
-name: '{"delete":{"name":""}}'
+'{"name": '{"delete":{"name":""}}'
 
-reference: '{"delete":{"reference":""}}'
+'{"reference": '{"delete":{"reference":""}}'
 ```
 #### Response:
 * Code 200 - .
@@ -124,8 +124,25 @@ $ node src/index.js
 ```
 # Project structure:
 ```
-
+├── Containerfile
+├── endpoints
+│   ├── delete-item
+│   │   └── delete-item.js
+│   ├── get-item
+│   │   └── find-stockItem.js
+│   ├── insert-item
+│   │   └── create-stockItem.js
+│   └── update-item
+│       └── update-stockitem.js
+├── entities
+│   └── item.js
+├── package.json
+├── package-lock.json
+├── README.md
+└── src
+    ├── db.js
+    └── index.js
 ```
 
 # Podman/Docker build:
-* [Build image - HERE]()
+* [Build image - HERE](./Containerfile)

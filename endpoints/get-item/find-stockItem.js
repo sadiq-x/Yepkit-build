@@ -5,32 +5,31 @@ import Item from '../../entities/item.js'
 export async function readStockItem(req, res) {
     const item = new Item()
     if (req.body.search) {
-        try{
+        try {
             for (let search in req.body.search) {
                 switch (search) {
                     case "id":
-                        item.getStockItemById(req.body.search.id)
+                        res.json(await item.getStockItemById(req.body.search.id))
                         break
                     case "name":
-                        item.getStockItemByName(req.body.search.name)
+                        res.json(await item.getStockItemByName(req.body.search.name))
                         break
                     case "reference":
-                        item.getStockItemByReference(req.body.search.reference)
-                        break
-                    case "type":
-                        item.getStockItemByType(req.body.search.type)
+                        res.json(await item.getStockItemByReference(req.body.search.reference))
                         break
                     case "all":
-                        item.getAllStock()
+                        res.json(await item.getAllStock())
                         break
                     default:
-                        res.status(401).json('Error searching for stock parameters')
+                        res.json(false)
                         break
                 }
             }
-        }catch(e){console.log('Request body error')}        
+        } catch (e) {
+            console.log(e)
+        }
         res.end()
     } else {
-        res.status(401).json('Request body error')
+        res.json(false)
     }
 }

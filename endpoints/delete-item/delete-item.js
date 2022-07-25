@@ -4,27 +4,29 @@ import Item from '../../entities/item.js'
 
 export async function deleteStockItem(req, res) {
     const item = new Item()
+    console.log(req.body.delete.length)
     if (req.body.delete) {
-        try{
+        try {
             for (let del in req.body.delete) {
                 switch (del) {
                     case "id":
-                        item.deleteStockById(req.body.delete.id)
+                        res.json(await item.deleteStockById(req.body.delete.id))
                         break
                     case "name":
-                        item.deleteStockByName(req.body.delete.name)
+                        res.json(await item.deleteStockByName(req.body.delete.name))
                         break
                     case "reference":
-                        item.deleteStockByReference(req.body.delete.reference)
+                        res.json(await item.deleteStockByReference(req.body.delete.reference))
                         break
                     default:
-                        res.status(401).json('Error searching for delete parameters')
+                        res.json(false)
                         break
                 }
             }
-        }catch(e){console.log('Request body error')}        
-        res.end()
+        } catch (e) {
+            console.log(e)
+        }
     } else {
-        res.status(401).json('Request body error')
+        res.json(false)
     }
 }

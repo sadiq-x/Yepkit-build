@@ -5,28 +5,23 @@ import { ObjectId } from 'mongodb';
 
 export default class Item {
     constructor() {
-        this.doc = {
-            user: null,              // string  Required.
+        this.doc = {             // string  Required.
             stockItem: {
                 type: null,          // string - Required. Product,Debug or Component.
                 name: null,          // string - Required. Name.
                 quantity: null,      // string - Required. Quantity.
                 reference: null,     // string - Required. Reference of product, debug or component.
-                date: null           // Date - Required. The date is automatically inserted.
+                data: null           // Date - Required. The date is automatically inserted.
             }
         }
     }
 
     //Document operations
 
-    //User Set
-    setUser(value) {
-        this.doc.user = value
-    }
     //StockItem Get/Set
     setStockItem(value) {
         this.doc.stockItem = value
-        this.doc.stockItem.date = Date.now()
+        this.doc.stockItem.data = Date.now()
     }
     getStockItem() {
         return this.doc.stockItem
@@ -40,9 +35,9 @@ export default class Item {
         if (this.doc) {
             let collection = getClient().collection(collectionName)
             const result = await collection.insertOne(this.doc)
-            return ('Inserted document accepted', result.insertedId)
+            return (true, result.insertedId)
         } else {
-            console.log('Inserted document dennied')
+            return false
         }
     }
 
@@ -51,9 +46,9 @@ export default class Item {
         let collection = await getClient().collection(collectionName)
         const result = await collection.find({}).toArray()
         if (result) {
-            console.log(result, 'all results')
+            return result
         } else {
-            console.log('No result found')
+            return false
         }
     }
 
@@ -63,9 +58,9 @@ export default class Item {
         let collection = await getClient().collection(collectionName)
         const result = await collection.findOne({ 'stockItem.name': nameItem })
         if (result) {
-            console.log(result, 'results for name')
+            return result
         } else {
-            console.log('No name found')
+            return false
         }
     }
 
@@ -76,11 +71,14 @@ export default class Item {
             let collection = getClient().collection(collectionName)
             const result = await collection.findOne({ _id: new ObjectId(id) })
             if (result) {
-                console.log(result, 'results for id')
+                return result
             } else {
-                console.log('No id found')
+                return false
             }
-        } catch (e) { console.log('No id found') }
+        } catch (e) {
+            console.log(e)
+            return false
+        }
     }
 
     /** Get Stock with the provided reference. 
@@ -89,21 +87,9 @@ export default class Item {
         let colection = await getClient().collection(collectionName)
         const result = await colection.findOne({ 'stockItem.reference': ref })
         if (result) {
-            console.log(result, 'results for reference')
+            return result
         } else {
-            console.log('No reference found')
-        }
-    }
-
-    /** Get Stock with the provided type. 
-     * Required type. */
-    async getStockItemByType(type) {
-        let colection = await getClient().collection(collectionName)
-        const result = await colection.find({ 'stockItem.type': { $all: [type] } }).toArray()
-        if (result && result.length >= 1) {
-            console.log(result, 'results for type')
-        } else {
-            console.log('No type found')
+            return false
         }
     }
 
@@ -114,11 +100,14 @@ export default class Item {
             let collection = getClient().collection(collectionName)
             const result = await collection.deleteOne({ _id: new ObjectId(id) })
             if (result.deletedCount === 1) {
-                console.log(Date.now(), " Successfully deleted  document");
+                return true
             } else {
-                console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
+                return false
             }
-        } catch (e) { console.log(Date.now(), " No documents matched the query. Deleted 0 documents") }
+        } catch (e) {
+            console.log(e)
+            return false
+        }
     }
 
     /** Delete document with the provided nameItem. 
@@ -127,9 +116,9 @@ export default class Item {
         let collection = getClient().collection(collectionName)
         const result = await collection.deleteOne({ 'stockItem.name': nameItem })
         if (result.deletedCount === 1) {
-            console.log(Date.now(), " Successfully deleted document", nameItem);
+            return true
         } else {
-            console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
+            return false
         }
     }
 
@@ -139,9 +128,9 @@ export default class Item {
         let collection = getClient().collection(collectionName)
         const result = await collection.deleteOne({ 'stockItem.reference': ref })
         if (result.deletedCount === 1) {
-            console.log(Date.now(), " Successfully deleted document", ref);
+            return true
         } else {
-            console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
+            return false
         }
     }
 
@@ -152,13 +141,13 @@ export default class Item {
             let collection = getClient().collection(collectionName)
             const query = { _id: new ObjectId(id) }
             const result = await collection.updateMany(query, { $set: this.doc })
-            if (result.modifiedCount >= 1 ) {
-                console.log(this.getStockItem().date, " Successfully update document", id);
+            if (result.modifiedCount >= 1) {
+                return true
             } else {
-                console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
+                return false
             }
         } catch {
-            console.log(Date.now(), " No documents matched the query. Deleted 0 documents");
+            return false
         }
     }
 }

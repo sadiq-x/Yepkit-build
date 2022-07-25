@@ -4,12 +4,10 @@ import Item from "../../entities/item.js";
 
 export async function createStockItem(req, res) {
     const item = new Item()
-    if (req.body.stockItem && req.body.user) {
-        item.setUser(req.body.user)
+    if (req.body.stockItem.name && req.body.stockItem.reference && req.body.stockItem.quantity && req.body.stockItem.type) {
         item.setStockItem(req.body.stockItem)
-        item.sendStockItem()
-        res.status(200).json(item.getStockItem())
+        res.json(await item.sendStockItem())
     } else{
-        res.status(401).json('Error to send stock')
+        res.json(false)
     }
 }
