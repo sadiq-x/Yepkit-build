@@ -75,7 +75,7 @@ Module.
 #### Request:
 * Content-Type: application/json.
 * Authorization jsonwebtoken : Authorizationheader.
-* (Example):
+* Body:
 ```
 '{"id":"","stockItem":{"type":"","name":"","quantity":"","reference":""}}'
 ```
@@ -95,16 +95,16 @@ Module.
 
 ## '/readstock' -> 
 
-- Curl example read stock for id search:
+- Curl example to read stock for id search:
 - id: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"id":""}}'
 
-- Curl example read stock for name search:
+- Curl example to read stock for name search:
 - name: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"name":""}}'
 
-- Curl example read stock for reference search:
+- Curl example to read stock for reference search:
 - reference: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"reference":""}}'
 
-- Curl example read all stock:
+- Curl example to\ read all stock:
 - all: curl -X POST http://localhost:PORT_SRV/readstock -H 'Content-Type: application/json' -H "Authorization: Bearer {token}" -d '{"search":{"all":""}}',
 
 
